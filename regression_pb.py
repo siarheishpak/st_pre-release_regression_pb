@@ -108,3 +108,48 @@ if st.checkbox("Nested tags + unsafe_allow_html"):
 	st.markdown('### <span><span>Test</span></span>', unsafe_allow_html=True)
 	st.write('### <span><span>Test</span></span>', unsafe_allow_html=True)
 	st.markdown('<span>hello <span>world</span></span>', unsafe_allow_html=True)
+
+if st.checkbox("Link Markdown"):
+	st.subheader('Simple link')
+	with st.echo():
+		st.markdown('My favorite search engine is https://duckduckgo.com.', unsafe_allow_html=True)
+		st.markdown('My favorite search engine is https://duckduckgo.com.', unsafe_allow_html=False)
+	st.subheader('Link substitution')
+	with st.echo():
+		st.markdown('My favorite search engine is [Duck Duck Go](https://duckduckgo.com).', unsafe_allow_html=True)
+		st.markdown('My favorite search engine is [Duck Duck Go](https://duckduckgo.com).', unsafe_allow_html=False)
+	st.subheader('Adding link title')
+	with st.echo():
+		st.markdown('My favorite search engine is [Duck Duck Go](https://duckduckgo.com "The best search engine for privacy").', unsafe_allow_html=True)
+		st.markdown('My favorite search engine is [Duck Duck Go](https://duckduckgo.com "The best search engine for privacy").', unsafe_allow_html=False)
+	st.subheader('URLs and Email Addresses')
+	with st.echo():
+		st.markdown('<https://www.markdownguide.org>', unsafe_allow_html=True)
+		st.markdown('<https://www.markdownguide.org>', unsafe_allow_html=False)
+		st.markdown('<fake@example.com>', unsafe_allow_html=True)
+		st.markdown('<fake@example.com>', unsafe_allow_html=False)
+	st.subheader('Formatting Links')
+	with st.echo():
+		st.markdown('I love supporting the **[EFF](https://eff.org)**.', unsafe_allow_html=True)
+		st.markdown('I love supporting the **[EFF](https://eff.org)**.', unsafe_allow_html=False)
+		st.markdown('This is the *[Markdown Guide](https://www.markdownguide.org)*.', unsafe_allow_html=True)
+		st.markdown('This is the *[Markdown Guide](https://www.markdownguide.org)*.', unsafe_allow_html=False)
+		st.markdown('See the section on [`code`](#code).', unsafe_allow_html=True)
+		st.markdown('See the section on [`code`](#code).', unsafe_allow_html=False)
+	st.subheader('html')
+	with st.echo():
+		st.markdown('<a href="https://en.wikipedia.org/wiki/Hobbit#Lifestyle" title="Hobbit lifestyles">hobbit-hole</a>', unsafe_allow_html=True)
+		st.markdown('<a href="https://en.wikipedia.org/wiki/Hobbit#Lifestyle" title="Hobbit lifestyles">hobbit-hole</a>', unsafe_allow_html=False)
+	st.subheader('Reference style')
+	with st.echo():
+		st.markdown('it was a [hobbit-hole](https://en.wikipedia.org/wiki/Hobbit#Lifestyle "Hobbit lifestyles"), and that means comfort.', unsafe_allow_html=True)
+		st.markdown('it was a [hobbit-hole](https://en.wikipedia.org/wiki/Hobbit#Lifestyle "Hobbit lifestyles"), and that means comfort.', unsafe_allow_html=False)
+
+if st.checkbox('Timezone in slider'):
+	period = st.slider(
+	    "Period:",
+    	min_value=datetime.time(0, 0),
+    	max_value=datetime.timetime(23, 45),
+    	value=(datetime.time(10, 00), datetime.time(23, 45)),
+	)
+	st.write(period)
