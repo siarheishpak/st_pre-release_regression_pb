@@ -149,7 +149,7 @@ if st.checkbox('Timezone in slider'):
 	period = st.slider(
 	    "Period:",
     	min_value=datetime.time(0, 0),
-    	max_value=datetime.timetime(23, 45),
+    	max_value=datetime.time(23, 45),
     	value=(datetime.time(10, 00), datetime.time(23, 45)),
 	)
 	st.write(period)
