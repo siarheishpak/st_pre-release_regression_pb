@@ -3,6 +3,7 @@ import time
 import datetime
 import pandas as pd
 import numpy as np
+import pytz
 
 @st.cache(suppress_st_warning=True)
 def expensive_computation(a, b):
@@ -145,11 +146,31 @@ if st.checkbox("Link Markdown"):
 		st.markdown('it was a [hobbit-hole](https://en.wikipedia.org/wiki/Hobbit#Lifestyle "Hobbit lifestyles"), and that means comfort.', unsafe_allow_html=True)
 		st.markdown('it was a [hobbit-hole](https://en.wikipedia.org/wiki/Hobbit#Lifestyle "Hobbit lifestyles"), and that means comfort.', unsafe_allow_html=False)
 
+		
 if st.checkbox('Timezone in slider'):
-	period = st.slider(
-	    "Period:",
-    	min_value=datetime.time(0, 0),
-    	max_value=datetime.time(23, 45),
-    	value=(datetime.time(10, 00), datetime.time(23, 45)),
-	)
-	st.write(period)
+	with st.echo(code_location='below'):
+		period = st.slider(
+		    "Period:",
+	    	min_value=datetime.time(0, 0),
+	    	max_value=datetime.time(23, 45),
+	    	value=(datetime.time(10, 00), datetime.time(23, 45)),
+		)
+		st.write(period)
+
+		st.write('TZ is explicitely specified')
+		period1 = st.slider(
+			"Period when TZ is specified:",
+			min_value=datetime.time(0, 0, tzinfo=pytz.timezone('US/Pacific')),
+			max_value=datetime.time(23, 59, tzinfo=pytz.timezone('US/Pacific')),
+			value=(datetime.time(10, 00, tzinfo=pytz.timezone('US/Pacific')), datetime.time(23, 45, tzinfo=pytz.timezone('US/Eastern')))
+		)
+		st.write(period1)
+		left_time = period1[0]
+		ritght_time = period1[1]
+		st.write(f'left value: {left_time}, right value: {ritght_time}')
+		st.write(left_time.strftime('%H:%M:%S %Z%z'))
+		st.write(ritght_time.strftime('%H:%M:%S %Z%z'))
+
+		
+if st.checkbox('Let it snow'):
+	st.snow()
