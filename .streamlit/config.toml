@@ -3,3 +3,6 @@ primaryColor="#6cd3ff"
 backgroundColor="#3b3b3b"
 secondaryBackgroundColor="#6c6d71"
 textColor="#edff77"
+
+[logger]
+level = "debug"
